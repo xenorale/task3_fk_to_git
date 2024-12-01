@@ -10,10 +10,8 @@ public class Main {
         System.out.println("Loading model ...");
         Model model = ObjReader.read(fileContent);
 
-        // Пример удаления полигонов (удаляем полигоны с индексами 1 и 2)
         Model model1 = Deleter.polygonDelete(model, List.of(1, 2));
 
-        // Выводим информацию о количестве полигонов после удаления
         System.out.println("Vertices: " + model1.vertices.size());
         System.out.println("Texture vertices: " + model1.textureVertices.size());
         System.out.println("Normals: " + model1.normals.size());
