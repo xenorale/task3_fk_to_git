@@ -11,11 +11,16 @@ public class Deleter {
         while (iterator.hasNext()) {
             Polygon polygon = iterator.next();
             if (polygonIndexSet.contains(index)) {
-                iterator.remove(); // Удаляем полигон
+                iterator.remove();
             }
             index++;
         }
-
         return newModel;
+    }
+    public static void deleteVertex(Model model, int vertexIndex) {
+        if (vertexIndex < 0 || vertexIndex >= model.vertices.size()) {
+            throw new IndexOutOfBoundsException("Vertex index is out of bounds");
+        }
+        model.vertices.remove(vertexIndex);
     }
 }

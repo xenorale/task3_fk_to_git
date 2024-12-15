@@ -1,42 +1,34 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-
 public class ObjReader {
-
     private static final String OBJ_VERTEX_TOKEN = "v";
     private static final String OBJ_TEXTURE_TOKEN = "vt";
     private static final String OBJ_NORMAL_TOKEN = "vn";
     private static final String OBJ_FACE_TOKEN = "f";
-
     public static Model read(String fileContent) {
         Model result = new Model();
-
         int lineInd = 0;
         Scanner scanner = new Scanner(fileContent);
         while (scanner.hasNextLine()) {
             final String line = scanner.nextLine();
-            ArrayList<String> wordsInLine = new ArrayList<String>(Arrays.asList(line.split("\\s+")));
+            ArrayList<String> wordsInLine = new ArrayList<>(Arrays.asList(line.split("\\s+")));
             if (wordsInLine.isEmpty()) {
                 continue;
             }
-
             final String token = wordsInLine.get(0);
             wordsInLine.remove(0);
-
             ++lineInd;
             switch (token) {
                 case OBJ_VERTEX_TOKEN -> result.vertices.add(parseVertex(wordsInLine, lineInd));
                 case OBJ_TEXTURE_TOKEN -> result.textureVertices.add(parseTextureVertex(wordsInLine, lineInd));
                 case OBJ_NORMAL_TOKEN -> result.normals.add(parseNormal(wordsInLine, lineInd));
-                case OBJ_FACE_TOKEN -> result.polygons.add(parseFace(wordsInLine, lineInd));
+                case OBJ_FACE_TOKEN -> result.polygons.add(parseFace(wordsInLine, lineInd, result));  // Передаем 'result'
                 default -> {}
             }
         }
-
         return result;
     }
-
     protected static Vector3f parseVertex(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
         try {
             return new Vector3f(
@@ -81,23 +73,20 @@ public class ObjReader {
         }
     }
 
-    protected static Polygon parseFace(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
-        ArrayList<Integer> onePolygonVertexIndices = new ArrayList<Integer>();
-        ArrayList<Integer> onePolygonTextureVertexIndices = new ArrayList<Integer>();
-        ArrayList<Integer> onePolygonNormalIndices = new ArrayList<Integer>();
-
+    protected static Polygon parseFace(final ArrayList<String> wordsInLineWithoutToken, int lineInd, Model model) {
+        ArrayList<Integer> onePolygonVertexIndices = new ArrayList<>();
+        ArrayList<Integer> onePolygonTextureVertexIndices = new ArrayList<>();
+        ArrayList<Integer> onePolygonNormalIndices = new ArrayList<>();
         for (String s : wordsInLineWithoutToken) {
             parseFaceWord(s, onePolygonVertexIndices, onePolygonTextureVertexIndices, onePolygonNormalIndices, lineInd);
         }
-
-
-        Polygon result = new Polygon();
+        Polygon result = new Polygon(model.vertices);
         result.setVertexIndices(onePolygonVertexIndices);
         result.setTextureVertexIndices(onePolygonTextureVertexIndices);
         result.setNormalIndices(onePolygonNormalIndices);
+
         return result;
     }
-
     protected static void parseFaceWord(
             String wordInLine,
             ArrayList<Integer> onePolygonVertexIndices,

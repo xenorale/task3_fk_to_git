@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="844bd063-ecbb-4614-9976-75677c882f24" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/Deleter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/DeleterTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/Model.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/ModelTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/ObjReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/ObjReaderException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/ObjWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/Polygon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/PolygonTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/Vector2f.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/task3_kg/Vector3f.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/src/Deleter.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/task3/src/Deleter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/task3/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/src/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/task3/src/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/src/ObjReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/task3/src/ObjReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/src/ObjReaderException.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/task3/src/ObjReaderException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/src/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/task3/src/Polygon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/src/Vector3f.java" beforeDir="false" afterPath="$PROJECT_DIR$/task3/task3/src/Vector3f.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/Deleter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/DeleterTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/Model.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/ModelTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/ObjReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/ObjReaderException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/ObjWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/Polygon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/PolygonTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/Vector2f.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/src/Vector3f.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3/task3/task3/task3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3_kg.iml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/task3" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2qGMYk2WXiQ9OprdBnu3ro0LjP5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "<unknown>",
+    "last_opened_file_path": "D:/ВГУ/KG/task3_kg/task3"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="task3_kg" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="844bd063-ecbb-4614-9976-75677c882f24" name="Changes" comment="" />
+      <created>1734284507614</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734284507614</updated>
+    </task>
+    <servers />
+  </component>
+</project>

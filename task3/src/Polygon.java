@@ -1,60 +1,54 @@
 import java.util.ArrayList;
-
+import java.util.List;
 public class Polygon implements Cloneable {
+    private List<Vector3f> vertices;
+    private ArrayList<Integer> vertexIndices;
+    private ArrayList<Integer> textureVertexIndices;
+    private ArrayList<Integer> normalIndices;
 
-    private ArrayList<Integer> vertexIndices;           // Индексы вершин полигона
-    private ArrayList<Integer> textureVertexIndices;    // Индексы текстурных координат полигона
-    private ArrayList<Integer> normalIndices;           // Индексы нормалей полигона
-
-    // Конструктор по умолчанию
-    public Polygon() {
-        vertexIndices = new ArrayList<>();
-        textureVertexIndices = new ArrayList<>();
-        normalIndices = new ArrayList<>();
+    public Polygon(List<Vector3f> vertices) {
+        this.vertices = vertices;
+        this.vertexIndices = new ArrayList<>();
+        this.textureVertexIndices = new ArrayList<>();
+        this.normalIndices = new ArrayList<>();
     }
 
-    // Метод clone
     @Override
     public Polygon clone() {
         try {
             Polygon clonedPolygon = (Polygon) super.clone();
-
-            // Глубокое копирование списков
             clonedPolygon.vertexIndices = new ArrayList<>(this.vertexIndices);
             clonedPolygon.textureVertexIndices = new ArrayList<>(this.textureVertexIndices);
             clonedPolygon.normalIndices = new ArrayList<>(this.normalIndices);
-
+            clonedPolygon.vertices = new ArrayList<>(this.vertices);
             return clonedPolygon;
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError(); // Этот код никогда не должен выполняться
+            throw new AssertionError();
         }
     }
 
-    // Сеттеры и геттеры (остаются неизменными)
     public void setVertexIndices(ArrayList<Integer> vertexIndices) {
-
         this.vertexIndices = vertexIndices;
     }
-
     public void setTextureVertexIndices(ArrayList<Integer> textureVertexIndices) {
-
         this.textureVertexIndices = textureVertexIndices;
     }
-
     public void setNormalIndices(ArrayList<Integer> normalIndices) {
-
         this.normalIndices = normalIndices;
     }
-
     public ArrayList<Integer> getVertexIndices() {
         return vertexIndices;
     }
-
     public ArrayList<Integer> getTextureVertexIndices() {
         return textureVertexIndices;
     }
-
     public ArrayList<Integer> getNormalIndices() {
         return normalIndices;
+    }
+    public List<Vector3f> getVertices() {
+        return vertices;
+    }
+    public void addVertex(Vector3f vertex) {
+        vertices.add(vertex);
     }
 }
