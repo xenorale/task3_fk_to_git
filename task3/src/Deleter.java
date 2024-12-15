@@ -1,21 +1,21 @@
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
 public class Deleter {
     public static Model polygonDelete(Model model, List<Integer> polygonIndices) {
-        // Клонируем модель, чтобы не изменять оригинал
         Model newModel = model.clone();
-
+        HashSet<Integer> polygonIndexSet = new HashSet<>(polygonIndices);
         Iterator<Polygon> iterator = newModel.polygons.iterator();
+        int index = 0;
         while (iterator.hasNext()) {
             Polygon polygon = iterator.next();
-            int index = newModel.polygons.indexOf(polygon);
-            if (polygonIndices.contains(index)) {
-                iterator.remove(); // Удаляем полигон по индексу
+            if (polygonIndexSet.contains(index)) {
+                iterator.remove(); // Удаляем полигон
             }
+            index++;
         }
 
-        return newModel; // Возвращаем измененную модель
+        return newModel;
     }
 }

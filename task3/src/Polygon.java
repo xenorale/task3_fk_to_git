@@ -2,10 +2,11 @@ import java.util.ArrayList;
 
 public class Polygon implements Cloneable {
 
-    private ArrayList<Integer> vertexIndices;
-    private ArrayList<Integer> textureVertexIndices;
-    private ArrayList<Integer> normalIndices;
-    
+    private ArrayList<Integer> vertexIndices;           // Индексы вершин полигона
+    private ArrayList<Integer> textureVertexIndices;    // Индексы текстурных координат полигона
+    private ArrayList<Integer> normalIndices;           // Индексы нормалей полигона
+
+    // Конструктор по умолчанию
     public Polygon() {
         vertexIndices = new ArrayList<>();
         textureVertexIndices = new ArrayList<>();

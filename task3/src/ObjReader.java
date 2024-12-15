@@ -4,110 +4,100 @@ import java.util.Scanner;
 
 public class ObjReader {
 
-    // Константы для обозначения ключевых слов в формате OBJ
-    private static final String OBJ_VERTEX_TOKEN = "v";  // Обозначает вершину
-    private static final String OBJ_TEXTURE_TOKEN = "vt"; // Обозначает текстурную координату
-    private static final String OBJ_NORMAL_TOKEN = "vn";  // Обозначает нормаль
-    private static final String OBJ_FACE_TOKEN = "f";     // Обозначает грань
+    private static final String OBJ_VERTEX_TOKEN = "v";
+    private static final String OBJ_TEXTURE_TOKEN = "vt";
+    private static final String OBJ_NORMAL_TOKEN = "vn";
+    private static final String OBJ_FACE_TOKEN = "f";
 
-    // Метод для чтения содержимого файла в формате OBJ
     public static Model read(String fileContent) {
-        Model result = new Model(); // Объект для хранения прочитанной модели
+        Model result = new Model();
 
-        int lineInd = 0; // Номер текущей строки, используется для отладки и обработки ошибок
-        Scanner scanner = new Scanner(fileContent); // Сканер для чтения строки за строкой
-        while (scanner.hasNextLine()) { // Пока есть строки в файле
-            final String line = scanner.nextLine(); // Считываем строку
-            // Разделяем строку на слова, используя пробелы в качестве разделителей
+        int lineInd = 0;
+        Scanner scanner = new Scanner(fileContent);
+        while (scanner.hasNextLine()) {
+            final String line = scanner.nextLine();
             ArrayList<String> wordsInLine = new ArrayList<String>(Arrays.asList(line.split("\\s+")));
-            if (wordsInLine.isEmpty()) { // Если строка пустая, пропускаем её
+            if (wordsInLine.isEmpty()) {
                 continue;
             }
 
-            final String token = wordsInLine.get(0); // Первое слово - это токен
-            wordsInLine.remove(0); // Удаляем токен из списка
+            final String token = wordsInLine.get(0);
+            wordsInLine.remove(0);
 
-            ++lineInd; // Увеличиваем индекс строки
+            ++lineInd;
             switch (token) {
-                // Обработка строки с вершинами
                 case OBJ_VERTEX_TOKEN -> result.vertices.add(parseVertex(wordsInLine, lineInd));
-                // Обработка строки с текстурными координатами
                 case OBJ_TEXTURE_TOKEN -> result.textureVertices.add(parseTextureVertex(wordsInLine, lineInd));
-                // Обработка строки с нормалями
                 case OBJ_NORMAL_TOKEN -> result.normals.add(parseNormal(wordsInLine, lineInd));
-                // Обработка строки с полигонами
                 case OBJ_FACE_TOKEN -> result.polygons.add(parseFace(wordsInLine, lineInd));
-                // Игнорируем строки с незнакомыми токенами
                 default -> {}
             }
         }
 
-        return result; // Возвращаем прочитанную модель
+        return result;
     }
 
-    // Метод для парсинга строки с вершинами
     protected static Vector3f parseVertex(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
         try {
             return new Vector3f(
-                    Float.parseFloat(wordsInLineWithoutToken.get(0)), // Чтение X-координаты
-                    Float.parseFloat(wordsInLineWithoutToken.get(1)), // Чтение Y-координаты
-                    Float.parseFloat(wordsInLineWithoutToken.get(2))  // Чтение Z-координаты
-            );
-        } catch (NumberFormatException e) {
-            throw new ObjReaderException("Failed to parse float value.", lineInd); // Ошибка в формате числа
-        } catch (IndexOutOfBoundsException e) {
-            throw new ObjReaderException("Too few vertex arguments.", lineInd); // Недостаточно аргументов
+                    Float.parseFloat(wordsInLineWithoutToken.get(0)),
+                    Float.parseFloat(wordsInLineWithoutToken.get(1)),
+                    Float.parseFloat(wordsInLineWithoutToken.get(2)));
+
+        } catch(NumberFormatException e) {
+            throw new ObjReaderException("Failed to parse float value.", lineInd);
+
+        } catch(IndexOutOfBoundsException e) {
+            throw new ObjReaderException("Too few vertex arguments.", lineInd);
         }
     }
 
-    // Метод для парсинга строки с текстурными координатами
     protected static Vector2f parseTextureVertex(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
         try {
             return new Vector2f(
-                    Float.parseFloat(wordsInLineWithoutToken.get(0)), // Чтение U-координаты
-                    Float.parseFloat(wordsInLineWithoutToken.get(1))  // Чтение V-координаты
-            );
-        } catch (NumberFormatException e) {
-            throw new ObjReaderException("Failed to parse float value.", lineInd); // Ошибка в формате числа
-        } catch (IndexOutOfBoundsException e) {
-            throw new ObjReaderException("Too few texture vertex arguments.", lineInd); // Недостаточно аргументов
+                    Float.parseFloat(wordsInLineWithoutToken.get(0)),
+                    Float.parseFloat(wordsInLineWithoutToken.get(1)));
+
+        } catch(NumberFormatException e) {
+            throw new ObjReaderException("Failed to parse float value.", lineInd);
+
+        } catch(IndexOutOfBoundsException e) {
+            throw new ObjReaderException("Too few texture vertex arguments.", lineInd);
         }
     }
 
-    // Метод для парсинга строки с нормалями
     protected static Vector3f parseNormal(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
         try {
             return new Vector3f(
-                    Float.parseFloat(wordsInLineWithoutToken.get(0)), // Чтение X-координаты нормали
-                    Float.parseFloat(wordsInLineWithoutToken.get(1)), // Чтение Y-координаты нормали
-                    Float.parseFloat(wordsInLineWithoutToken.get(2))  // Чтение Z-координаты нормали
-            );
-        } catch (NumberFormatException e) {
-            throw new ObjReaderException("Failed to parse float value.", lineInd); // Ошибка в формате числа
-        } catch (IndexOutOfBoundsException e) {
-            throw new ObjReaderException("Too few normal arguments.", lineInd); // Недостаточно аргументов
+                    Float.parseFloat(wordsInLineWithoutToken.get(0)),
+                    Float.parseFloat(wordsInLineWithoutToken.get(1)),
+                    Float.parseFloat(wordsInLineWithoutToken.get(2)));
+
+        } catch(NumberFormatException e) {
+            throw new ObjReaderException("Failed to parse float value.", lineInd);
+
+        } catch(IndexOutOfBoundsException e) {
+            throw new ObjReaderException("Too few normal arguments.", lineInd);
         }
     }
 
-    // Метод для парсинга строки с полигонами
     protected static Polygon parseFace(final ArrayList<String> wordsInLineWithoutToken, int lineInd) {
-        ArrayList<Integer> onePolygonVertexIndices = new ArrayList<>(); // Индексы вершин полигона
-        ArrayList<Integer> onePolygonTextureVertexIndices = new ArrayList<>(); // Индексы текстурных координат
-        ArrayList<Integer> onePolygonNormalIndices = new ArrayList<>(); // Индексы нормалей
+        ArrayList<Integer> onePolygonVertexIndices = new ArrayList<Integer>();
+        ArrayList<Integer> onePolygonTextureVertexIndices = new ArrayList<Integer>();
+        ArrayList<Integer> onePolygonNormalIndices = new ArrayList<Integer>();
 
-        // Парсим каждую часть описания полигона
         for (String s : wordsInLineWithoutToken) {
             parseFaceWord(s, onePolygonVertexIndices, onePolygonTextureVertexIndices, onePolygonNormalIndices, lineInd);
         }
 
-        Polygon result = new Polygon(); // Создаем объект полигона
+
+        Polygon result = new Polygon();
         result.setVertexIndices(onePolygonVertexIndices);
         result.setTextureVertexIndices(onePolygonTextureVertexIndices);
         result.setNormalIndices(onePolygonNormalIndices);
         return result;
     }
 
-    // Метод для парсинга одной части полигона (формата "v/vt/vn")
     protected static void parseFaceWord(
             String wordInLine,
             ArrayList<Integer> onePolygonVertexIndices,
@@ -115,19 +105,16 @@ public class ObjReader {
             ArrayList<Integer> onePolygonNormalIndices,
             int lineInd) {
         try {
-            String[] wordIndices = wordInLine.split("/"); // Разделяем строку по символу '/'
+            String[] wordIndices = wordInLine.split("/");
             switch (wordIndices.length) {
                 case 1 -> {
-                    // Только вершины
-                    onePolygonVertexIndices.add(Integer.parseInt(wordIndices[0]) - 1); // Индекс вершины
+                    onePolygonVertexIndices.add(Integer.parseInt(wordIndices[0]) - 1);
                 }
                 case 2 -> {
-                    // Вершины и текстурные координаты
                     onePolygonVertexIndices.add(Integer.parseInt(wordIndices[0]) - 1);
                     onePolygonTextureVertexIndices.add(Integer.parseInt(wordIndices[1]) - 1);
                 }
                 case 3 -> {
-                    // Вершины, текстурные координаты и нормали
                     onePolygonVertexIndices.add(Integer.parseInt(wordIndices[0]) - 1);
                     onePolygonNormalIndices.add(Integer.parseInt(wordIndices[2]) - 1);
                     if (!wordIndices[1].equals("")) {
@@ -135,13 +122,15 @@ public class ObjReader {
                     }
                 }
                 default -> {
-                    throw new ObjReaderException("Invalid element size.", lineInd); // Неверный формат строки
+                    throw new ObjReaderException("Invalid element size.", lineInd);
                 }
             }
-        } catch (NumberFormatException e) {
-            throw new ObjReaderException("Failed to parse int value.", lineInd); // Ошибка в формате числа
-        } catch (IndexOutOfBoundsException e) {
-            throw new ObjReaderException("Too few arguments.", lineInd); // Недостаточно аргументов
+
+        } catch(NumberFormatException e) {
+            throw new ObjReaderException("Failed to parse int value.", lineInd);
+
+        } catch(IndexOutOfBoundsException e) {
+            throw new ObjReaderException("Too few arguments.", lineInd);
         }
     }
 }

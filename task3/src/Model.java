@@ -2,20 +2,18 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class Model implements Cloneable {
-
     public ArrayList<Vector3f> vertices = new ArrayList<>();
     public ArrayList<Vector2f> textureVertices = new ArrayList<>();
     public ArrayList<Vector3f> normals = new ArrayList<>();
     public ArrayList<Polygon> polygons = new ArrayList<>();
 
-    public Model() {
-    }
+    public Model() {}
 
     // Метод клонирования вершин
     public ArrayList<Vector3f> cloneVertices() {
         ArrayList<Vector3f> clonedVertices = new ArrayList<>();
         for (Vector3f vertex : this.vertices) {
-            clonedVertices.add(vertex.clone());
+            clonedVertices.add(vertex.clone()); // Предполагается, что Vector3f поддерживает clone()
         }
         return clonedVertices;
     }
@@ -24,7 +22,7 @@ public class Model implements Cloneable {
     public ArrayList<Vector2f> cloneTextureVertices() {
         ArrayList<Vector2f> clonedTextureVertices = new ArrayList<>();
         for (Vector2f textureVertex : this.textureVertices) {
-            clonedTextureVertices.add(textureVertex.clone());
+            clonedTextureVertices.add(textureVertex.clone()); // Предполагается, что Vector2f поддерживает clone()
         }
         return clonedTextureVertices;
     }
@@ -57,40 +55,40 @@ public class Model implements Cloneable {
         clonedModel.polygons = this.clonePolygons();
         return clonedModel;
     }
+
+    // Экспорт модели в формат OBJ
     public void exportToOBJ() {
-        // Устанавливаем локаль для использования точки как разделителя дробной части
-        Locale.setDefault(Locale.US);
-
-        // Вывод вершин
+        // Используем локаль US только в рамках форматирования строк
         for (Vector3f vertex : vertices) {
-            System.out.printf("v %.6f %.6f %.6f%n", vertex.getX(), vertex.getY(), vertex.getZ());
+            System.out.printf(Locale.US, "v %.6f %.6f %.6f%n", vertex.getX(), vertex.getY(), vertex.getZ());
         }
 
-        // Вывод нормалей
         for (Vector3f normal : normals) {
-            System.out.printf("vn %.6f %.6f %.6f%n", normal.getX(), normal.getY(), normal.getZ());
+            System.out.printf(Locale.US, "vn %.6f %.6f %.6f%n", normal.getX(), normal.getY(), normal.getZ());
         }
 
-        // Вывод текстурных координат
         for (Vector2f textureVertex : textureVertices) {
-            System.out.printf("vt %.6f %.6f%n", textureVertex.getX(), textureVertex.getY());
+            System.out.printf(Locale.US, "vt %.6f %.6f%n", textureVertex.getX(), textureVertex.getY());
         }
 
-        // Вывод полигонов
         for (Polygon polygon : polygons) {
             System.out.print("f");
             for (int i = 0; i < polygon.getVertexIndices().size(); i++) {
-                int vertexIndex = polygon.getVertexIndices().get(i) + 1; // Индексация в OBJ начинается с 1
-                String facePart = String.valueOf(vertexIndex);
+                StringBuilder facePart = new StringBuilder();
 
-                if (!polygon.getTextureVertexIndices().isEmpty()) {
+                int vertexIndex = polygon.getVertexIndices().get(i) + 1; // Индексация начинается с 1
+                facePart.append(vertexIndex);
+
+                if (!polygon.getTextureVertexIndices().isEmpty() && i < polygon.getTextureVertexIndices().size()) {
                     int textureIndex = polygon.getTextureVertexIndices().get(i) + 1;
-                    facePart += "/" + textureIndex;
+                    facePart.append("/").append(textureIndex);
+                } else {
+                    facePart.append("/");
                 }
 
-                if (!polygon.getNormalIndices().isEmpty()) {
+                if (!polygon.getNormalIndices().isEmpty() && i < polygon.getNormalIndices().size()) {
                     int normalIndex = polygon.getNormalIndices().get(i) + 1;
-                    facePart += (facePart.contains("/") ? "" : "/") + "/" + normalIndex;
+                    facePart.append("/").append(normalIndex);
                 }
 
                 System.out.print(" " + facePart);
