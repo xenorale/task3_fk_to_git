@@ -35,12 +35,11 @@ class ModelTest {
         Polygon polygon2 = new Polygon(vertices);
         model.addPolygon(polygon1);
         model.addPolygon(polygon2);
-        List<Integer> indicesToDelete = new ArrayList<>();
-        indicesToDelete.add(0);
-        model.deletePolygons(indicesToDelete);
+        model.deletePolygon(polygon1);
         assertEquals(1, model.polygons.size(), "После удаления одного полигона должен остаться только один");
         assertEquals(polygon2, model.polygons.get(0), "Оставшийся полигон должен быть вторым");
     }
+
     @Test
     void testExportToOBJ() {
         model.vertices.add(new Vector3f(1.0f, 2.0f, 3.0f));
